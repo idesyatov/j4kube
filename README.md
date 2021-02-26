@@ -35,7 +35,7 @@ in {
       ./roles/master.nix
     ];
   ...
-};
+}
 ```
 
 dhcp is used for tests, so you need to change `kubeMasterIP` address
