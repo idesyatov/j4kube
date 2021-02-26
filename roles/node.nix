@@ -1,10 +1,9 @@
 { config, pkgs, ... }:
 let
-  kubeMasterIP = "10.0.1.191";
+  kubeMasterIP = "10.0.1.190";
   kubeMasterHostname = "api.kube";
   kubeMasterAPIServerPort = 443;
-in
-{
+in {
   # resolve master hostname
   networking.extraHosts = "${kubeMasterIP} ${kubeMasterHostname}";
 

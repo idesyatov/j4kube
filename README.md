@@ -10,6 +10,7 @@ parted /dev/sda mkpart EFI fat32 0% 512M
 parted /dev/sda set 1 esp on
 parted /dev/sda mkpart NIX ext4 512M 100%
 
+
 mkfs.vfat -F32 /dev/sda1
 mkfs.ext4 /dev/sda2
 
@@ -19,9 +20,36 @@ mount /dev/sda1 /mnt/boot
 
 nix-env -iA nixos.gitMinimal
 git clone https://github.com/idesyatov/j4kube.git /mnt/etc/nixos/
+```
 
-Set import role in `/etc/nixos/configuration.nix`
+Set import role `master` or `node` in `/etc/nixos/configuration.nix`
 
+```nix
+imports =
+[ 
+  ./hardware-configuration.nix
+  ./packages.nix
+  ./roles/master.nix
+];
+```
+
+dhcp is used for tests, so you need to change `kubeMasterIP` address
+
+`./roles/*.nix`
+
+```nix
+let
+  kubeMasterIP = "10.0.1.190";
+  kubeMasterHostname = "api.kube";
+  kubeMasterAPIServerPort = 443;
+in {
+  ...
+}
+```
+
+next
+
+```sh
 nix-channel --add https://nixos.org/channels/nixos-20.09 nixos
 nix-channel --add https://nixos.org/channels/nixos-20.09-small nixos-small
 nix-channel --update
