@@ -25,12 +25,17 @@ git clone https://github.com/idesyatov/j4kube.git /mnt/etc/nixos/
 Set import role `master` or `node` in `/etc/nixos/configuration.nix`
 
 ```nix
-imports =
-[ 
-  ./hardware-configuration.nix
-  ./packages.nix
-  ./roles/master.nix
-];
+let
+  nixos-small = import <nixos-small> {};
+in {
+  imports =
+    [ 
+      ./hardware-configuration.nix
+      ./packages.nix
+      ./roles/master.nix
+    ];
+  ...
+};
 ```
 
 dhcp is used for tests, so you need to change `kubeMasterIP` address
