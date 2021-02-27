@@ -52,7 +52,7 @@ in {
 }
 ```
 
-next
+Next
 
 ```sh
 nix-channel --add https://nixos.org/channels/nixos-20.09 nixos
@@ -100,7 +100,7 @@ You should also see that the master is also a node using `kubectl get nodes`:
 
 ```sh
 NAME       STATUS   ROLES    AGE   VERSION
-direwolf   Ready    <none>   41m   v1.16.6-beta.0
+master     Ready    <none>   41m   v1.16.6-beta.0
 ```
 
 ### - Node
@@ -115,10 +115,10 @@ cat /var/lib/kubernetes/secrets/apitoken.secret
 echo TOKEN | nixos-kubernetes-node-join
 ```
 
-After that, you should see your new node using kubectl get nodes:
+After that, you should see your new node using `kubectl get nodes`:
 
 ```sh
 NAME       STATUS   ROLES    AGE    VERSION
-direwolf   Ready    <none>   62m    v1.16.6-beta.0
-drake      Ready    <none>   102m   v1.16.6-beta.0
+master     Ready    <none>   62m    v1.16.6-beta.0
+node       Ready    <none>   102m   v1.16.6-beta.0
 ```
