@@ -1,4 +1,4 @@
-# Reproducible localhost
+# Reproducible kubehosts
 
 [Download NixOS installation ISO](https://nixos.org/nixos/download.html)
 
